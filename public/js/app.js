@@ -81,14 +81,20 @@ function updateSortButtonLabel() {
 function setValuePlaceholder() {
   const categorieSelect = document.getElementById("categorie");
   const waardeInput = document.getElementById("waarde");
+  const omschrijvingInput = document.getElementById("omschrijving");
 
-  if (!categorieSelect || !waardeInput) return;
+  if (!categorieSelect || !waardeInput || !omschrijvingInput) return;
 
   const lang = getCurrentLanguage();
-  const key = `${VALUE_PLACEHOLDER_PREFIX}${categorieSelect.value}`;
-  const placeholder = translations?.[lang]?.[key] || "";
+  const category = categorieSelect.value;
+  const valueKey = `${VALUE_PLACEHOLDER_PREFIX}${category}`;
+  const descriptionKey = `descriptionPlaceholder${category}`;
 
-  waardeInput.placeholder = placeholder;
+  waardeInput.placeholder = translations?.[lang]?.[valueKey] || "";
+  omschrijvingInput.placeholder =
+    translations?.[lang]?.[descriptionKey] ||
+    translations?.[lang]?.descriptionPlaceholder ||
+    "";
 }
 
 function renderStats(items) {

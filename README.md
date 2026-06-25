@@ -1,56 +1,49 @@
 # 🏥 Mijn Gezondheid PWA
 
-Welkom bij mijn **Mijn Gezondheid PWA**! 📱
+Welkom bij **Mijn Gezondheid PWA**! 📱
 
 Deze applicatie is ontwikkeld als schoolproject voor de module **Eenvoudige Mobiele App**. Met deze app kunnen gebruikers eenvoudig hun gezondheidsgegevens bijhouden en bekijken.
 
 ## ✨ Functionaliteiten
 
-✅ Gezondheidsgegevens toevoegen
+- Gezondheidsgegevens toevoegen
+- Overzicht van ingevoerde gegevens bekijken
+- Gegevens verwijderen of resetten
+- Opslag via LocalStorage
+- Responsive mobiel ontwerp 📱
+- Werkt ook offline 🌐
+- Installeren als PWA 🚀
+- Nederlands 🇳🇱 en Engels 🇬🇧
 
-✅ Overzicht van ingevoerde gegevens bekijken
-
-✅ Gegevens verwijderen of resetten
-
-✅ Opslag via LocalStorage
-
-✅ Responsive mobile-first ontwerp 📱
-
-✅ Werkt ook offline 🌐
-
-✅ Installeerbaar als PWA 🚀
-
-✅ Nederlands 🇳🇱 en Engels 🇬🇧
-
-## 🛠️ Gebruikte technieken
+## 🛠️ Gebruikte technologieën
 
 - HTML5
 - CSS3
 - JavaScript
 - LocalStorage
-- Manifest.json
+- manifest.json
 - Service Worker
 - Git & GitHub
 
 ## 📂 Pagina's
 
-🏠 Dashboard
-➕ Gegevens toevoegen
-📋 Overzicht
+- Dashboard
+- Gegevens toevoegen
+- Overzicht
 
 ## 🎯 Doel
 
-Het doel van deze applicatie is om gebruikers te helpen hun dagelijkse gezondheid beter bij te houden op een eenvoudige en gebruiksvriendelijke manier.
+Deze applicatie helpt gebruikers om hun dagelijkse gezondheid eenvoudig en overzichtelijk bij te houden.
 
 ## 🚀 Installatie
 
-### 1. Repository clonen
+1. Repository clonen:
 
-git clone https://github.com/wsdi123/schoolproject-pwa.git
+   git clone https://github.com/wsdi123/schoolproject-pwa.git
 
-### 2. Dependencies installeren
+2. Dependencies installeren:
 
-npm install
+   npm install
 
 ## 👨‍💻 Auteur
 
