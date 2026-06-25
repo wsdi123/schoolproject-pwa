@@ -204,6 +204,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setValuePlaceholder();
 
+  // Zorg dat gebruikers geen toekomstige datum kunnen selecteren
+  const datumInput = document.getElementById("datum");
+  if (datumInput) {
+    const todayStr = new Date().toISOString().split("T")[0];
+    datumInput.max = todayStr;
+  }
+
   const form = document.getElementById("health-form");
 
   if (form) {
@@ -211,6 +218,24 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
 
       const datum = document.getElementById("datum").value;
+      // Valideer: geen toekomstige datums toelaten
+      const today = new Date();
+      const startOfToday = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate(),
+      );
+      if (datum) {
+        const inputDate = new Date(datum);
+        if (inputDate.getTime() > startOfToday.getTime()) {
+          alert(
+            translations[getCurrentLanguage()].futureDate ||
+              "Date cannot be in the future",
+          );
+          return;
+        }
+      }
+
       const categorie = document.getElementById("categorie").value;
       const omschrijving = document.getElementById("omschrijving").value.trim();
       const waarde = document.getElementById("waarde").value;
