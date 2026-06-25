@@ -254,6 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("language-updated", () => {
   setValuePlaceholder();
   updateSortButtonLabel();
+  renderItems();
 });
 
 // Alles resetten
