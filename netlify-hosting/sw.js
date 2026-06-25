@@ -38,12 +38,7 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  const requestUrl = new URL(event.request.url);
-
-  if (
-    requestUrl.origin === location.origin &&
-    requestUrl.pathname.endsWith(".html")
-  ) {
+  if (event.request.mode === "navigate") {
     event.respondWith(
       caches.match(event.request).then((cachedResponse) => {
         if (cachedResponse) {
@@ -55,6 +50,7 @@ self.addEventListener("fetch", (event) => {
             if (!networkResponse || networkResponse.status !== 200) {
               return networkResponse;
             }
+
             const responseClone = networkResponse.clone();
             caches
               .open(CACHE_NAME)
@@ -78,13 +74,19 @@ self.addEventListener("fetch", (event) => {
           if (!networkResponse || networkResponse.status !== 200) {
             return networkResponse;
           }
+
           const responseClone = networkResponse.clone();
           caches
             .open(CACHE_NAME)
             .then((cache) => cache.put(event.request, responseClone));
           return networkResponse;
         })
-        .catch(() => caches.match(event.request));
+        .catch(() => {
+          if (event.request.destination === "document") {
+            return caches.match("/offline.html");
+          }
+          return caches.match(event.request);
+        });
     }),
   );
 });

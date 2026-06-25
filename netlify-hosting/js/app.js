@@ -204,10 +204,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setValuePlaceholder();
 
+  const getLocalDateString = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
   // Zorg dat gebruikers geen toekomstige datum kunnen selecteren
   const datumInput = document.getElementById("datum");
   if (datumInput) {
-    const todayStr = new Date().toISOString().split("T")[0];
+    const todayStr = getLocalDateString();
     datumInput.max = todayStr;
   }
 
@@ -226,7 +234,8 @@ document.addEventListener("DOMContentLoaded", () => {
         today.getDate(),
       );
       if (datum) {
-        const inputDate = new Date(datum);
+        const [year, month, day] = datum.split("-");
+        const inputDate = new Date(year, Number(month) - 1, day);
         if (inputDate.getTime() > startOfToday.getTime()) {
           alert(
             translations[getCurrentLanguage()].futureDate ||
