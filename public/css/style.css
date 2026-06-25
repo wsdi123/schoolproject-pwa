@@ -324,6 +324,16 @@ nav.hoofd-nav a {
   padding: 8px 6px;
 }
 
+.nav-emoji {
+  display: inline-block;
+  font-size: 1.15rem;
+}
+
+.nav-label {
+  display: inline-block;
+  margin-left: 6px;
+}
+
 nav.hoofd-nav .language-dropdown {
   flex: 0 0 25%;
   min-width: 0;
@@ -372,6 +382,11 @@ nav.hoofd-nav .language-dropdown {
     min-width: 0;
   }
 
+  /* Toon alleen emoji op small screens voor compacte navigatie */
+  .nav-label {
+    display: none;
+  }
+
   nav.hoofd-nav a {
     font-size: clamp(0.68rem, 2.2vw, 0.9rem);
     padding: 7px 5px;
@@ -406,12 +421,11 @@ nav.hoofd-nav .language-dropdown {
     z-index: 10;
   }
 
-
-/* Also set card z-index for larger screens so inputs and popups are above the nav */
-.card {
-  position: relative;
-  z-index: 10;
-}
+  /* Also set card z-index for larger screens so inputs and popups are above the nav */
+  .card {
+    position: relative;
+    z-index: 10;
+  }
   nav.hoofd-nav a {
     font-size: 0.7rem;
     padding: 6px 3px;
