@@ -14,8 +14,7 @@ function saveItems(items) {
 const VALUE_PLACEHOLDER_PREFIX = "valuePlaceholder";
 
 function getCurrentLanguage() {
-  const languageSelect = document.getElementById("language-switch");
-  return languageSelect?.value || localStorage.getItem("language") || "en";
+  return localStorage.getItem("language") || "en";
 }
 
 function setValuePlaceholder() {
