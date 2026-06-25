@@ -12,9 +12,70 @@ function saveItems(items) {
 }
 
 const VALUE_PLACEHOLDER_PREFIX = "valuePlaceholder";
+const DEFAULT_FILTER = "all";
+let currentFilter = DEFAULT_FILTER;
+let newestFirst = true;
 
 function getCurrentLanguage() {
   return localStorage.getItem("language") || "en";
+}
+
+function getFilteredAndSortedItems(items) {
+  const today = new Date();
+  const startOfToday = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate(),
+  );
+  const oneDay = 24 * 60 * 60 * 1000;
+
+  const filtered = items.filter((item) => {
+    if (!item.datum) return false;
+    const itemDate = new Date(item.datum);
+    if (Number.isNaN(itemDate.getTime())) return false;
+
+    switch (currentFilter) {
+      case "day":
+        return (
+          itemDate.getTime() >= startOfToday.getTime() &&
+          itemDate.getTime() < startOfToday.getTime() + oneDay
+        );
+      case "week":
+        return (
+          itemDate.getTime() >= startOfToday.getTime() - 6 * oneDay &&
+          itemDate.getTime() < startOfToday.getTime() + oneDay
+        );
+      case "month":
+        return (
+          itemDate.getTime() >= startOfToday.getTime() - 29 * oneDay &&
+          itemDate.getTime() < startOfToday.getTime() + oneDay
+        );
+      default:
+        return true;
+    }
+  });
+
+  return filtered.sort((a, b) => {
+    const diff = new Date(a.datum) - new Date(b.datum);
+    return newestFirst ? -diff : diff;
+  });
+}
+
+function setActiveFilterButton() {
+  const filterButtons = document.querySelectorAll(
+    ".filter-buttons button[data-filter]",
+  );
+  filterButtons.forEach((button) => {
+    button.classList.toggle("active", button.dataset.filter === currentFilter);
+  });
+}
+
+function updateSortButtonLabel() {
+  const sortButton = document.getElementById("sort-button");
+  if (!sortButton) return;
+  sortButton.textContent = newestFirst
+    ? translations[getCurrentLanguage()].sortNewest
+    : translations[getCurrentLanguage()].sortOldest;
 }
 
 function setValuePlaceholder() {
@@ -36,7 +97,7 @@ function renderItems() {
 
   if (!lijst) return;
 
-  const items = getItems();
+  const items = getFilteredAndSortedItems(getItems());
 
   if (items.length === 0) {
     lijst.innerHTML = "<p>Geen gegevens gevonden.</p>";
@@ -64,10 +125,32 @@ function renderItems() {
 // Formulier verwerken
 document.addEventListener("DOMContentLoaded", () => {
   renderItems();
+  setActiveFilterButton();
+  updateSortButtonLabel();
 
   const categorieSelect = document.getElementById("categorie");
   if (categorieSelect) {
     categorieSelect.addEventListener("change", setValuePlaceholder);
+  }
+
+  const filterButtons = document.querySelectorAll(
+    ".filter-buttons button[data-filter]",
+  );
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      currentFilter = button.dataset.filter || DEFAULT_FILTER;
+      setActiveFilterButton();
+      renderItems();
+    });
+  });
+
+  const sortButton = document.getElementById("sort-button");
+  if (sortButton) {
+    sortButton.addEventListener("click", () => {
+      newestFirst = !newestFirst;
+      updateSortButtonLabel();
+      renderItems();
+    });
   }
 
   setValuePlaceholder();
@@ -121,7 +204,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.addEventListener("language-updated", setValuePlaceholder);
+document.addEventListener("language-updated", () => {
+  setValuePlaceholder();
+  updateSortButtonLabel();
+});
 
 // Alles resetten
 function resetData() {
