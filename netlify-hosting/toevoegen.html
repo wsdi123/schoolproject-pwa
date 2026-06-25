@@ -1,0 +1,123 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Add Activity | Healthify</title>
+
+    <meta name="theme-color" content="#22c55e" />
+
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/icons/appicon.png" />
+
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+
+  <body>
+    <header class="app-header">
+      <h1>💚 Healthify</h1>
+      <p data-translate="addSubtitle">Add a new health activity</p>
+    </header>
+
+    <nav class="hoofd-nav">
+      <a href="index.html"
+        ><span class="nav-emoji">🏠</span>
+        <span class="nav-label" data-translate="home">Home</span></a
+      >
+      <a href="toevoegen.html"
+        ><span class="nav-emoji">➕</span>
+        <span class="nav-label" data-translate="add">Add</span></a
+      >
+      <a href="overzicht.html"
+        ><span class="nav-emoji">📊</span>
+        <span class="nav-label" data-translate="overview">Overview</span></a
+      >
+
+      <div class="language-dropdown">
+        <button
+          id="language-button"
+          type="button"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+        >
+          <span class="language-label">🇬🇧 EN</span>
+        </button>
+        <ul
+          id="language-menu"
+          class="language-menu"
+          role="listbox"
+          aria-label="Select language"
+        >
+          <li class="language-option" role="option" data-lang="en" tabindex="0">
+            🇬🇧 English
+          </li>
+          <li class="language-option" role="option" data-lang="nl" tabindex="0">
+            🇳🇱 Nederlands
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="container">
+      <section class="card">
+        <h2 data-translate="addActivity">Add Activity</h2>
+
+        <form id="health-form">
+          <label for="datum" data-translate="date">Date</label>
+          <input type="date" id="datum" required />
+
+          <label for="categorie" data-translate="category">Category</label>
+
+          <select id="categorie" required>
+            <option value="Exercise" data-translate="exercise" data-emoji="🏃">
+              🏃 Exercise
+            </option>
+            <option
+              value="Nutrition"
+              data-translate="nutrition"
+              data-emoji="🍎"
+            >
+              🍎 Nutrition
+            </option>
+            <option value="Sleep" data-translate="sleep" data-emoji="😴">
+              😴 Sleep
+            </option>
+            <option value="Water" data-translate="water" data-emoji="💧">
+              💧 Water
+            </option>
+          </select>
+
+          <label for="omschrijving" data-translate="description"
+            >Description</label
+          >
+          <input
+            type="text"
+            id="omschrijving"
+            placeholder="Example: 30 minute run"
+            required
+          />
+
+          <label for="waarde" data-translate="value">Value</label>
+          <input type="number" id="waarde" placeholder="30" required />
+
+          <button type="submit" data-translate="save">Save Activity</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="./js/app.js" defer></script>
+
+    <script src="./js/language.js" defer></script>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then(() => console.log("Service Worker registered"))
+          .catch((error) => console.error(error));
+      }
+    </script>
+  </body>
+</html>

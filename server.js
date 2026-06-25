@@ -1,9 +1,18 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 const PORT = 3000;
 
-app.use(express.static("public"));
-app.use("/icons", express.static("icons"));
+app.use(express.static(path.join(__dirname, "public")));
+app.use("/icons", express.static(path.join(__dirname, "icons")));
+
+app.get("/sw.js", (req, res) => {
+  res.sendFile(path.join(__dirname, "sw.js"));
+});
+
+app.get("/manifest.json", (req, res) => {
+  res.sendFile(path.join(__dirname, "manifest.json"));
+});
 
 app.set("view engine", "ejs");
 

@@ -1,0 +1,105 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Healthify</title>
+    <meta name="theme-color" content="#22c55e" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/icons/appicon.png" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+
+  <body>
+    <header class="app-header">
+      <h1>💚 Healthify</h1>
+      <p data-translate="subtitle">Track your health and fitness goals</p>
+    </header>
+
+    <nav class="hoofd-nav">
+      <a href="index.html"
+        ><span class="nav-emoji">🏠</span>
+        <span class="nav-label" data-translate="home">Home</span></a
+      >
+      <a href="toevoegen.html"
+        ><span class="nav-emoji">➕</span>
+        <span class="nav-label" data-translate="add">Add</span></a
+      >
+      <a href="overzicht.html"
+        ><span class="nav-emoji">📊</span>
+        <span class="nav-label" data-translate="overview">Overview</span></a
+      >
+      <div class="language-dropdown">
+        <button
+          id="language-button"
+          type="button"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+        >
+          <span class="language-label">🇬🇧 EN</span>
+        </button>
+        <ul
+          id="language-menu"
+          class="language-menu"
+          role="listbox"
+          aria-label="Select language"
+        >
+          <li class="language-option" role="option" data-lang="en" tabindex="0">
+            🇬🇧 English
+          </li>
+          <li class="language-option" role="option" data-lang="nl" tabindex="0">
+            🇳🇱 Nederlands
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main class="container">
+      <section class="card">
+        <h2 data-translate="welcome">Welcome to Healthify</h2>
+        <p data-translate="welcomeText">
+          Healthify helps you track your exercise, nutrition, sleep and water
+          intake.
+        </p>
+        <a href="toevoegen.html" class="btn-link" data-translate="startTracking"
+          >Start Tracking</a
+        >
+      </section>
+      <section class="card">
+        <h2 data-translate="stats">Quick Statistics</h2>
+        <p>
+          <span data-translate="entries"> Total Entries </span>:
+          <strong id="total-items">0</strong>
+        </p>
+      </section>
+      <section class="card">
+        <h2 data-translate="categories">Categories</h2>
+
+        <div class="category-grid">
+          <div class="category-card">
+            🏃 <span data-translate="exercise">Exercise</span>
+          </div>
+          <div class="category-card">
+            🍎 <span data-translate="nutrition">Nutrition</span>
+          </div>
+          <div class="category-card">
+            😴 <span data-translate="sleep">Sleep</span>
+          </div>
+          <div class="category-card">
+            💧 <span data-translate="water">Water</span>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="./js/app.js" defer></script>
+    <script src="./js/language.js" defer></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then(() => console.log("Service Worker registered"))
+          .catch((error) => console.error(error));
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Overview | Healthify</title>
+
+    <meta name="theme-color" content="#22c55e" />
+
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/icons/appicon.png" />
+
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+
+  <body>
+    <header class="app-header">
+      <h1>💚 Healthify</h1>
+      <p data-translate="overviewSubtitle">View your saved health activities</p>
+    </header>
+
+    <nav class="hoofd-nav">
+      <a href="index.html"
+        ><span class="nav-emoji">🏠</span>
+        <span class="nav-label" data-translate="home">Home</span></a
+      >
+      <a href="toevoegen.html"
+        ><span class="nav-emoji">➕</span>
+        <span class="nav-label" data-translate="add">Add</span></a
+      >
+      <a href="overzicht.html"
+        ><span class="nav-emoji">📊</span>
+        <span class="nav-label" data-translate="overview">Overview</span></a
+      >
+      <div class="language-dropdown">
+        <button
+          id="language-button"
+          type="button"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+        >
+          <span class="language-label">🇬🇧 EN</span>
+        </button>
+        <ul
+          id="language-menu"
+          class="language-menu"
+          role="listbox"
+          aria-label="Select language"
+        >
+          <li class="language-option" role="option" data-lang="en" tabindex="0">
+            🇬🇧 English
+          </li>
+          <li class="language-option" role="option" data-lang="nl" tabindex="0">
+            🇳🇱 Nederlands
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="container">
+      <section class="card">
+        <h2 data-translate="overview">Overview</h2>
+        <p data-translate="overviewText">
+          View all your saved health activities.
+        </p>
+      </section>
+      <section class="card">
+        <h2 data-translate="filters">Filters</h2>
+        <div class="filter-buttons">
+          <button data-filter="all" data-translate="all">All</button>
+          <button data-filter="day" data-translate="today">Today</button>
+          <button data-filter="week" data-translate="week">Week</button>
+          <button data-filter="month" data-translate="month">Month</button>
+        </div>
+      </section>
+      <section class="card stats-card">
+        <h2 data-translate="statistics">Statistics</h2>
+        <div class="stats-panel">
+          <div class="stat-row">
+            <span data-translate="totalItems">Total Items</span>
+            <strong id="stat-total">0</strong>
+          </div>
+          <div class="stat-row">
+            <span data-translate="averageValue">Average Value</span>
+            <strong id="stat-average">0</strong>
+          </div>
+          <div class="stat-row">
+            <span data-translate="highestValue">Highest Value</span>
+            <strong id="stat-highest">0</strong>
+          </div>
+          <div class="stat-row">
+            <span data-translate="lowestValue">Lowest Value</span>
+            <strong id="stat-lowest">0</strong>
+          </div>
+          <div class="stat-category-counts">
+            <h3 data-translate="categoryCounts">Category counts</h3>
+            <ul id="stat-categories"></ul>
+          </div>
+        </div>
+      </section>
+      <section class="card">
+        <div class="section-header">
+          <h2 data-translate="savedItems">Saved Activities</h2>
+          <button id="sort-button" type="button" class="sort-toggle">
+            Newest first
+          </button>
+        </div>
+        <div id="items-lijst">
+          <!-- Activiteiten uit LocalStorage verschijnen hier -->
+        </div>
+      </section>
+      <section class="card">
+        <button
+          class="reset-btn"
+          onclick="resetData()"
+          data-translate="deleteAll"
+        >
+          Delete All Data
+        </button>
+      </section>
+    </main>
+    <script src="./js/app.js" defer></script>
+
+    <script src="./js/language.js" defer></script>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then(() => console.log("Service Worker registered"))
+          .catch((error) => console.error(error));
+      }
+    </script>
+  </body>
+</html>
