@@ -109,8 +109,10 @@ select {
 input[type="date"] {
   width: 100%;
   max-width: 100%;
-  padding: 12px 14px;
-  font-size: 0.95rem;
+  min-width: 0;
+  padding: 14px 16px;
+  font-size: 1rem;
+  box-sizing: border-box;
 }
 
 input:focus,
