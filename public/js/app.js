@@ -114,12 +114,14 @@ function renderStats(items) {
   }, {});
 
   const totalEl = document.getElementById("stat-total");
+  const homeTotalEl = document.getElementById("total-items");
   const averageEl = document.getElementById("stat-average");
   const highestEl = document.getElementById("stat-highest");
   const lowestEl = document.getElementById("stat-lowest");
   const categoriesEl = document.getElementById("stat-categories");
 
   if (totalEl) totalEl.textContent = total;
+  if (homeTotalEl) homeTotalEl.textContent = total;
   if (averageEl) averageEl.textContent = countValues ? average.toFixed(1) : "0";
   if (highestEl) highestEl.textContent = countValues ? highest : "0";
   if (lowestEl) lowestEl.textContent = countValues ? lowest : "0";
