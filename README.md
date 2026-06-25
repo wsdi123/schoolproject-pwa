@@ -42,6 +42,16 @@ Deze applicatie is ontwikkeld als schoolproject voor de module **Eenvoudige Mobi
 
 Het doel van deze applicatie is om gebruikers te helpen hun dagelijkse gezondheid beter bij te houden op een eenvoudige en gebruiksvriendelijke manier.
 
+## 🚀 Installatie
+
+### 1. Repository clonen
+
+git clone https://github.com/wsdi123/schoolproject-pwa.git
+
+### 2. Dependencies installeren
+
+npm install
+
 ## 👨‍💻 Auteur
 
 **Ruben Harutyunyan**
