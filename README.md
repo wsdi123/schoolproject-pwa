@@ -45,6 +45,10 @@ Deze applicatie helpt gebruikers om hun dagelijkse gezondheid eenvoudig en overz
 
    npm install
 
+## 🔗 Live demo
+
+Bekijk de live demo: https://zingy-yeot-cb28ce.netlify.app/
+
 ## 👨‍💻 Auteur
 
 **Ruben Harutyunyan**
