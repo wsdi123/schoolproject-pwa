@@ -1,0 +1,166 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #22c55e;
+  --primary-dark: #16a34a;
+  --background: #f8fafc;
+  --card: #ffffff;
+  --text: #1e293b;
+  --border: #e2e8f0;
+  --danger: #ef4444;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  background: var(--primary);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Cards */
+.card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 1rem;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* Buttons */
+button {
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button[type="submit"] {
+  background: var(--primary);
+  color: white;
+}
+
+button[type="submit"]:hover {
+  background: var(--primary-dark);
+}
+
+/* Delete */
+.delete-btn {
+  background: var(--danger);
+  color: white;
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* Reset */
+.reset-btn {
+  background: #64748b;
+  color: white;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Health items */
+#items-lijst {
+  margin-top: 20px;
+}
+
+#items-lijst .card h3 {
+  color: var(--primary-dark);
+  margin-bottom: 10px;
+}
+
+#items-lijst .card p {
+  margin-bottom: 6px;
+}
+
+/* Navigation */
+nav {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-around;
+  padding: 12px;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: bold;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .container {
+    padding: 30px;
+  }
+
+  form {
+    max-width: 600px;
+    margin: auto;
+  }
+
+  #items-lijst {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  #items-lijst {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
