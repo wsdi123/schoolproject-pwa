@@ -134,7 +134,7 @@ function renderStats(items) {
       )
       .join("");
     if (Object.keys(categoryCounts).length === 0) {
-      categoriesEl.innerHTML = `<li data-translate="noCategoryCounts">No categories</li>`;
+      categoriesEl.innerHTML = `<li>${translations[getCurrentLanguage()].noCategoryCounts}</li>`;
     }
   }
 }
