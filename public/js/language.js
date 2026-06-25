@@ -3,6 +3,23 @@ const translations = {
     home: "Home",
     add: "Add",
     overview: "Overview",
+    subtitle: "Track your health and fitness goals",
+    welcome: "Welcome to Healthify",
+    welcomeText:
+      "Healthify helps you track your exercise, nutrition, sleep and water intake.",
+    startTracking: "Start Tracking",
+    stats: "Quick Statistics",
+    entries: "Total Entries",
+    categories: "Categories",
+    overviewSubtitle: "View your saved health activities",
+    overviewText: "View all your saved health activities.",
+    filters: "Filters",
+    savedItems: "Saved Activities",
+    all: "All",
+    today: "Today",
+    week: "Week",
+    month: "Month",
+    deleteAll: "Delete All Data",
     addSubtitle: "Add a new health activity",
     addActivity: "Add Activity",
     date: "Date",
@@ -24,8 +41,25 @@ const translations = {
     home: "Home",
     add: "Toevoegen",
     overview: "Overzicht",
+    subtitle: "Volg je gezondheid en fitnessdoelen",
+    welcome: "Welkom bij Healthify",
+    welcomeText:
+      "Healthify helpt je met het volgen van je beweging, voeding, slaap en waterinname.",
+    startTracking: "Start met bijhouden",
+    stats: "Snel overzicht",
+    entries: "Totaal aantal items",
+    categories: "Categorieën",
     addSubtitle: "Voeg een nieuwe gezondheidsactiviteit toe",
     addActivity: "Activiteit toevoegen",
+    overviewSubtitle: "Bekijk je opgeslagen gezondheidsactiviteiten",
+    overviewText: "Bekijk al je opgeslagen gezondheidsactiviteiten.",
+    filters: "Filters",
+    savedItems: "Opgeslagen activiteiten",
+    all: "Alles",
+    today: "Vandaag",
+    week: "Week",
+    month: "Maand",
+    deleteAll: "Verwijder alle gegevens",
     date: "Datum",
     category: "Categorie",
     description: "Omschrijving",
@@ -43,21 +77,65 @@ const translations = {
   },
 };
 
-const languageSelect = document.getElementById("language-switch");
+const languageButton = document.getElementById("language-button");
+const languageMenu = document.getElementById("language-menu");
+const languageOptions = document.querySelectorAll(".language-option");
+const DEFAULT_LANGUAGE = "en";
 
-if (languageSelect) {
-  const savedLanguage = localStorage.getItem("language") || "en";
+const savedLanguage = localStorage.getItem("language") || DEFAULT_LANGUAGE;
+setLanguage(savedLanguage);
+updateLanguageButton(savedLanguage);
 
-  languageSelect.value = savedLanguage;
-
-  setLanguage(savedLanguage);
-
-  languageSelect.addEventListener("change", () => {
-    localStorage.setItem("language", languageSelect.value);
-
-    setLanguage(languageSelect.value);
+if (languageButton) {
+  languageButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    toggleLanguageMenu();
   });
 }
+
+if (languageMenu) {
+  languageMenu.addEventListener("click", (event) => {
+    const option = event.target.closest(".language-option");
+    if (!option) return;
+
+    const lang = option.dataset.lang;
+    if (!lang) return;
+
+    localStorage.setItem("language", lang);
+    setLanguage(lang);
+    updateLanguageButton(lang);
+    closeLanguageMenu();
+  });
+
+  languageMenu.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeLanguageMenu();
+      languageButton?.focus();
+    }
+    if (event.key === "Enter" || event.key === " ") {
+      const option = event.target.closest(".language-option");
+      if (!option) return;
+
+      const lang = option.dataset.lang;
+      if (!lang) return;
+
+      localStorage.setItem("language", lang);
+      setLanguage(lang);
+      updateLanguageButton(lang);
+      closeLanguageMenu();
+    }
+  });
+}
+
+document.addEventListener("click", () => {
+  closeLanguageMenu();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeLanguageMenu();
+  }
+});
 
 function setLanguage(lang) {
   document.querySelectorAll("[data-translate]").forEach((element) => {
@@ -79,5 +157,38 @@ function setLanguage(lang) {
     omschrijving.placeholder = translations[lang].descriptionPlaceholder;
   }
 
+  updateLanguageButton(lang);
   document.dispatchEvent(new Event("language-updated"));
+}
+
+function updateLanguageButton(lang) {
+  if (!languageButton) return;
+
+  const label = lang === "nl" ? "🇳🇱 NL" : "🇬🇧 EN";
+  const labelSpan = languageButton.querySelector(".language-label");
+  if (labelSpan) {
+    labelSpan.textContent = label;
+  }
+
+  if (languageMenu) {
+    languageOptions.forEach((option) => {
+      const active = option.dataset.lang === lang;
+      option.classList.toggle("active", active);
+      option.setAttribute("aria-selected", active ? "true" : "false");
+    });
+  }
+}
+
+function toggleLanguageMenu() {
+  if (!languageMenu) return;
+  const open = languageMenu.classList.toggle("open");
+  languageMenu.parentElement?.classList.toggle("open", open);
+  languageButton?.setAttribute("aria-expanded", open ? "true" : "false");
+}
+
+function closeLanguageMenu() {
+  if (!languageMenu) return;
+  languageMenu.classList.remove("open");
+  languageMenu.parentElement?.classList.remove("open");
+  languageButton?.setAttribute("aria-expanded", "false");
 }
