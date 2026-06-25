@@ -1,68 +1,86 @@
 <!doctype html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    ```
     <title>Overview | Healthify</title>
 
     <meta name="theme-color" content="#22c55e" />
-    <link rel="manifest" href="manifest.json" />
-    <link rel="stylesheet" href="public/css/style.css" />
-    <link rel="apple-touch-icon" href="icons/appicon.png" />
+
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/icons/appicon.png" />
+
+    <link rel="stylesheet" href="./css/style.css" />
+    ```
   </head>
 
   <body>
-    <header>
+    <header class="app-header">
       <h1>💚 Healthify</h1>
-      <p data-translate="overviewSubtitle">View your saved health data</p>
+      <p data-translate="overviewSubtitle">View your saved health activities</p>
     </header>
 
-    <nav>
-      <a href="index.html" data-translate="home">Home</a>
-      <a href="toevoegen.html" data-translate="add">Add</a>
-      <a href="overzicht.html" data-translate="overview">Overview</a>
+    <nav class="hoofd-nav">
+      <a href="index.html" data-translate="home">🏠 Home</a>
+      <a href="toevoegen.html" data-translate="add">➕ Add</a>
+      <a href="overzicht.html" data-translate="overview">📊 Overview</a>
 
+      ```
       <select id="language-switch">
         <option value="en">🇬🇧 EN</option>
         <option value="nl">🇳🇱 NL</option>
       </select>
+      ```
     </nav>
 
     <main class="container">
+      ```
       <section class="card">
-        <h2 data-translate="overviewTitle">Overview</h2>
+        <h2 data-translate="overview">Overview</h2>
+
+        <p data-translate="overviewText">
+          View all your saved health activities.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2 data-translate="filters">Filters</h2>
 
         <div class="filter-buttons">
-          <button data-filter="all" data-translate="all">All</button>
-          <button data-filter="day" data-translate="today">Today</button>
-          <button data-filter="week" data-translate="week">Week</button>
-          <button data-filter="month" data-translate="month">Month</button>
+          <button data-filter="all">All</button>
+          <button data-filter="day">Today</button>
+          <button data-filter="week">Week</button>
+          <button data-filter="month">Month</button>
         </div>
       </section>
 
       <section class="card">
-        <h2 data-translate="savedItems">Saved Items</h2>
+        <h2 data-translate="savedItems">Saved Activities</h2>
 
-        <div id="items-lijst"></div>
-
-        <button
-          class="reset-btn"
-          onclick="resetData()"
-          data-translate="deleteAll"
-        >
-          Delete all
-        </button>
+        <div id="items-lijst">
+          <!-- Activiteiten uit LocalStorage verschijnen hier -->
+        </div>
       </section>
+
+      <section class="card">
+        <button class="reset-btn" onclick="resetData()">Delete All Data</button>
+      </section>
+      ```
     </main>
 
-    <script src="public/js/app.js"></script>
-    <script src="public/js/language.js"></script>
+    <script src="./js/app.js" defer></script>
+
+    <script src="./js/language.js" defer></script>
 
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker
-          .register("./sw.js")
-          .then(() => console.log("Service Worker registered"));
+          .register("/sw.js")
+          .then(() => console.log("Service Worker registered"))
+          .catch((error) => console.error(error));
       }
     </script>
   </body>
