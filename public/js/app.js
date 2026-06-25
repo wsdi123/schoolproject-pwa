@@ -147,7 +147,7 @@ function renderItems() {
   renderStats(items);
 
   if (items.length === 0) {
-    lijst.innerHTML = "<p>Geen gegevens gevonden.</p>";
+    lijst.innerHTML = `<p>${translations[getCurrentLanguage()].noData}</p>`;
     return;
   }
 
