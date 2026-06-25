@@ -49,6 +49,8 @@ Deze applicatie helpt gebruikers om hun dagelijkse gezondheid eenvoudig en overz
 
 Bekijk de live demo: https://zingy-yeot-cb28ce.netlify.app/
 
+[![Live demo](https://img.shields.io/badge/Live%20Demo-Open-brightgreen)](https://zingy-yeot-cb28ce.netlify.app/)
+
 ## 👨‍💻 Auteur
 
 **Ruben Harutyunyan**
