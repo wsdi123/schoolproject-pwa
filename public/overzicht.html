@@ -4,8 +4,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    ```
     <title>Overview | Healthify</title>
 
     <meta name="theme-color" content="#22c55e" />
@@ -14,7 +12,6 @@
     <link rel="apple-touch-icon" href="/icons/appicon.png" />
 
     <link rel="stylesheet" href="./css/style.css" />
-    ```
   </head>
 
   <body>
@@ -27,50 +24,63 @@
       <a href="index.html" data-translate="home">🏠 Home</a>
       <a href="toevoegen.html" data-translate="add">➕ Add</a>
       <a href="overzicht.html" data-translate="overview">📊 Overview</a>
-
-      ```
-      <select id="language-switch">
-        <option value="en">🇬🇧 EN</option>
-        <option value="nl">🇳🇱 NL</option>
-      </select>
-      ```
+      <div class="language-dropdown">
+        <button
+          id="language-button"
+          type="button"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+        >
+          <span class="language-label">🇬🇧 EN</span>
+        </button>
+        <ul
+          id="language-menu"
+          class="language-menu"
+          role="listbox"
+          aria-label="Select language"
+        >
+          <li class="language-option" role="option" data-lang="en" tabindex="0">
+            🇬🇧 English
+          </li>
+          <li class="language-option" role="option" data-lang="nl" tabindex="0">
+            🇳🇱 Nederlands
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <main class="container">
-      ```
       <section class="card">
         <h2 data-translate="overview">Overview</h2>
-
         <p data-translate="overviewText">
           View all your saved health activities.
         </p>
       </section>
-
       <section class="card">
         <h2 data-translate="filters">Filters</h2>
-
         <div class="filter-buttons">
-          <button data-filter="all">All</button>
-          <button data-filter="day">Today</button>
-          <button data-filter="week">Week</button>
-          <button data-filter="month">Month</button>
+          <button data-filter="all" data-translate="all">All</button>
+          <button data-filter="day" data-translate="today">Today</button>
+          <button data-filter="week" data-translate="week">Week</button>
+          <button data-filter="month" data-translate="month">Month</button>
         </div>
       </section>
-
       <section class="card">
         <h2 data-translate="savedItems">Saved Activities</h2>
-
         <div id="items-lijst">
           <!-- Activiteiten uit LocalStorage verschijnen hier -->
         </div>
       </section>
-
       <section class="card">
-        <button class="reset-btn" onclick="resetData()">Delete All Data</button>
+        <button
+          class="reset-btn"
+          onclick="resetData()"
+          data-translate="deleteAll"
+        >
+          Delete All Data
+        </button>
       </section>
-      ```
     </main>
-
     <script src="./js/app.js" defer></script>
 
     <script src="./js/language.js" defer></script>
