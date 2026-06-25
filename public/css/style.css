@@ -85,6 +85,7 @@ header.app-header p {
 form {
   display: grid;
   gap: 16px;
+  min-width: 0;
 }
 
 label {
@@ -95,12 +96,19 @@ label {
 input,
 select {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   padding: 14px 16px;
   border: 1px solid var(--border);
   border-radius: 16px;
   font-size: 1rem;
   background: #f8fafc;
   color: var(--text);
+}
+
+input[type="date"] {
+  width: 100%;
+  max-width: 100%;
 }
 
 input:focus,
@@ -419,6 +427,7 @@ nav.hoofd-nav .language-dropdown {
   .card {
     position: relative;
     z-index: 10;
+    overflow: hidden;
   }
 
   /* Also set card z-index for larger screens so inputs and popups are above the nav */
