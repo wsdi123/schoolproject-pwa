@@ -236,6 +236,43 @@ button[type="submit"]:hover {
     transform 0.15s ease;
 }
 
+.stats-panel {
+  display: grid;
+  gap: 12px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  background: #f8fafc;
+  border-radius: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+}
+
+.stat-category-counts h3 {
+  margin-bottom: 8px;
+  font-size: 0.98rem;
+}
+
+.stat-category-counts ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.stat-category-counts li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: #f1f5f9;
+  border-radius: 14px;
+  font-size: 0.95rem;
+}
+
 .sort-toggle:hover {
   background: #ecfdf5;
 }

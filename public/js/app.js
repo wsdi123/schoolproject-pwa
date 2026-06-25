@@ -91,6 +91,46 @@ function setValuePlaceholder() {
   waardeInput.placeholder = placeholder;
 }
 
+function renderStats(items) {
+  const total = items.length;
+  const values = items
+    .map((item) => Number(item.waarde))
+    .filter((value) => !Number.isNaN(value));
+  const countValues = values.length;
+  const sum = values.reduce((acc, value) => acc + value, 0);
+  const average = countValues ? sum / countValues : 0;
+  const highest = countValues ? Math.max(...values) : 0;
+  const lowest = countValues ? Math.min(...values) : 0;
+  const categoryCounts = items.reduce((counts, item) => {
+    const category = item.categorie || "Unknown";
+    counts[category] = (counts[category] || 0) + 1;
+    return counts;
+  }, {});
+
+  const totalEl = document.getElementById("stat-total");
+  const averageEl = document.getElementById("stat-average");
+  const highestEl = document.getElementById("stat-highest");
+  const lowestEl = document.getElementById("stat-lowest");
+  const categoriesEl = document.getElementById("stat-categories");
+
+  if (totalEl) totalEl.textContent = total;
+  if (averageEl) averageEl.textContent = countValues ? average.toFixed(1) : "0";
+  if (highestEl) highestEl.textContent = countValues ? highest : "0";
+  if (lowestEl) lowestEl.textContent = countValues ? lowest : "0";
+
+  if (categoriesEl) {
+    categoriesEl.innerHTML = Object.entries(categoryCounts)
+      .map(
+        ([category, count]) =>
+          `<li><strong>${category}:</strong> ${count}</li>`,
+      )
+      .join("");
+    if (Object.keys(categoryCounts).length === 0) {
+      categoriesEl.innerHTML = `<li data-translate="noCategoryCounts">No categories</li>`;
+    }
+  }
+}
+
 // Overzicht tonen
 function renderItems() {
   const lijst = document.getElementById("items-lijst");
@@ -98,6 +138,7 @@ function renderItems() {
   if (!lijst) return;
 
   const items = getFilteredAndSortedItems(getItems());
+  renderStats(items);
 
   if (items.length === 0) {
     lijst.innerHTML = "<p>Geen gegevens gevonden.</p>";
