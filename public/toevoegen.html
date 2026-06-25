@@ -26,10 +26,29 @@
       <a href="toevoegen.html" data-translate="add">➕ Add</a>
       <a href="overzicht.html" data-translate="overview">📊 Overview</a>
 
-      <select id="language-switch">
-        <option value="en">🇬🇧 EN</option>
-        <option value="nl">🇳🇱 NL</option>
-      </select>
+      <div class="language-dropdown">
+        <button
+          id="language-button"
+          type="button"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+        >
+          <span class="language-label">🇬🇧 EN</span>
+        </button>
+        <ul
+          id="language-menu"
+          class="language-menu"
+          role="listbox"
+          aria-label="Select language"
+        >
+          <li class="language-option" role="option" data-lang="en" tabindex="0">
+            🇬🇧 English
+          </li>
+          <li class="language-option" role="option" data-lang="nl" tabindex="0">
+            🇳🇱 Nederlands
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <main class="container">
