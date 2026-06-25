@@ -47,9 +47,9 @@ Deze applicatie helpt gebruikers om hun dagelijkse gezondheid eenvoudig en overz
 
 ## 🔗 Live demo
 
-Bekijk de live demo: https://zingy-yeot-cb28ce.netlify.app/
+Bekijk de live demo: https://symphonious-bienenstitch-40c5a6.netlify.app/
 
-[![Bekijk demo](https://img.shields.io/badge/Bekijk%20demo-Open-brightgreen)](https://zingy-yeot-cb28ce.netlify.app/)
+[![Bekijk demo](https://img.shields.io/badge/Bekijk%20demo-Open-brightgreen)](https://symphonious-bienenstitch-40c5a6.netlify.app/)
 
 ## 👨‍💻 Auteur
 
